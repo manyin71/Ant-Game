@@ -1,0 +1,24 @@
+package ants;
+import world.*;
+
+public class Ant {
+
+	Brain brain;
+	World world;
+	String colour;
+	Boolean hasfood;
+	int resting;
+	int state;
+	int xlocation;
+	int ylocation;
+	
+	Ant(Brain brain, World world){
+		this.brain = brain;
+	}
+	
+	public void takeTurn(){
+		
+	}
+	
+	//sub instructions based on what is returned from the brain
+}
