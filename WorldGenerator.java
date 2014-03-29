@@ -1,3 +1,5 @@
+package world;
+import errors.*;
 
 
 import java.io.BufferedReader;
@@ -45,8 +47,7 @@ public class WorldGenerator {
 			FileReader fr = new FileReader(path);
 			bfr = new BufferedReader(fr);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//show error
 		}
 		
 		//get the map size as integers and store
@@ -77,11 +78,13 @@ public class WorldGenerator {
 						//red anthill
 						else if (current == "+".charAt(0)){
 							cells[i][j] = new Cell("Red Anthill");
+							cells[i][j].setOccupied(true);
 							System.out.println("Red Anthill");
 						}
 						//black anthill
 						else if (current == "-".charAt(0)){
 							cells[i][j] = new Cell("Black Anthill");
+							cells[i][j].setOccupied(true);
 							System.out.println("Black Anthill");
 						}
 						//food particles 1 to 9
