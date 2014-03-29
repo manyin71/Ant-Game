@@ -1,0 +1,72 @@
+package ants;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import errors.InvalidFileException;
+
+public class BrainGenerator {
+
+	String path;
+	BufferedReader bfr;
+	ArrayList<Instruction> instructions;
+	Brain brain;
+	
+	BrainGenerator(String path){
+		
+		this.path = path;
+		
+		try{
+			brain = generateBrain();
+		}
+		catch (InvalidFileException e){
+			System.out.println(e);
+		}
+		
+	}
+	
+	Brain generateBrain() throws InvalidFileException{
+		
+		//create the file reader from the path
+		try {
+			FileReader fr = new FileReader(path);
+			bfr = new BufferedReader(fr);
+		} catch (FileNotFoundException e) {
+
+			//show error
+		}
+		
+		instructions = new ArrayList<Instruction>();
+		int maxinstructions = 10000;
+		int counter = 0;
+		
+		//generate list of instructions from file
+		while (counter < maxinstructions){
+			try {
+				String line = bfr.readLine();
+				line = line.trim();
+				
+				//split line into an instruction part
+				String[] out = line.split(" ");
+				//add to array
+				instructions.add(new Instruction(out));
+				counter++;
+				
+				//need early terminator if no more instructions
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		//pass to new brain
+		return new Brain(instructions);
+		
+	}
+}
